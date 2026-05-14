@@ -53,12 +53,20 @@ def recommend_next_song(
             )
         )
 
+        beatmatch_score = (
+            calculate_beatmatch_score(
+                current_state["current_bpm"],
+                song["bpm"]
+            )
+        )
+
         final_score = (
             calculate_final_score(
                 tempo_score,
                 energy_score,
                 mood_score,
                 harmonic_score,
+                beatmatch_score,
                 history_score
             )
         )

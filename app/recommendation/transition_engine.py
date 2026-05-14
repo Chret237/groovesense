@@ -19,3 +19,17 @@ def update_energy_direction(
     session.energy_direction = (
         direction
     )
+
+def calculate_target_bpm(
+    current_bpm,
+    next_bpm
+):
+
+    diff = abs(
+        current_bpm - next_bpm
+    )
+
+    if diff <= 5:
+        return current_bpm
+
+    return next_bpm

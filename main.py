@@ -39,7 +39,7 @@ from app.player.session_manager import (
 
 library = get_all_songs()
 
-first_song = library[0]
+first_song = library[34]
 
 session = start_session(
     first_song
@@ -75,7 +75,7 @@ print(f"{first_song['title']} ({first_song['file_path']})")
 
 print("\nRECOMMENDED:")
 print(
-    recommendation["song"]["title"]
+    recommendation["song"]["title"] + " (" + recommendation["song"]["file_path"] + ")"
 )
 
 print(

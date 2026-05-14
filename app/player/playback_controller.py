@@ -63,6 +63,9 @@ def playback_loop(
                         session.played_songs
                     )
                 )
+                print("\nRECOMMENDED:")
+                print(next_song["song"]["title"] + " (" + next_song["song"]["file_path"] + ")")
+                print(f"Score: {next_song['score']}")
                 update_session(
                     session,
                     next_song["song"]
@@ -103,6 +106,9 @@ def playback_loop(
                     session.played_songs
                 )
             )
+            print("\nRECOMMENDED:")
+            print(next_song["song"]["title"] + " (" + next_song["song"]["file_path"] + ")")
+            print(f"Score: {next_song['score']}")
             update_session(
                 session,
                 next_song["song"]
@@ -159,6 +165,9 @@ def playback_loop(
                             session.played_songs
                         )
                     )
+                    print("\nRECOMMENDED:")
+                    print(next_song["song"]["title"] + " (" + next_song["song"]["file_path"] + ")")
+                    print(f"Score: {next_song['score']}")
                     update_session(
                         session,
                         next_song["song"]

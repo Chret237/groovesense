@@ -106,24 +106,48 @@ def calculate_history_score(
 
     return 0
 
+def calculate_beatmatch_score(
+    current_bpm,
+    candidate_bpm
+):
+
+    diff = abs(
+        current_bpm -
+        candidate_bpm
+    )
+
+    if diff <= 3:
+        return 100
+
+    if diff <= 6:
+        return 80
+
+    if diff <= 10:
+        return 60
+
+    return 20
+
 def calculate_final_score(
     tempo_score,
     energy_score,
     mood_score,
     harmonic_score,
+    beatmatch_score,
     history_score
 ):
 
     return (
 
-        tempo_score * 0.25 +
+        tempo_score * 0.2 +
 
-        energy_score * 0.25 +
+        energy_score * 0.2 +
 
         mood_score * 0.15 +
 
-        harmonic_score * 0.25 +
+        harmonic_score * 0.2 +
 
-        history_score * 0.10
+        beatmatch_score * 0.15 +
+
+        history_score * 0.1
     )
 
