@@ -4,6 +4,9 @@ from app.audio.energy import extract_energy
 from app.audio.loudness import extract_loudness
 from app.audio.mood_detector import detect_mood
 from app.audio.key_detector import detect_key
+from app.recommendation.camelot import (
+    get_camelot_key
+)
 
 
 def analyze_song(path: str):
@@ -21,9 +24,13 @@ def analyze_song(path: str):
         energy
     )
 
-    key = detect_key(
+    musical_key = detect_key(
         audio,
         sr
+    )
+
+    camelot_key = get_camelot_key(
+        musical_key
     )
 
     return {
@@ -31,5 +38,6 @@ def analyze_song(path: str):
         "energy": energy,
         "loudness": loudness,
         "mood": mood,
-        "key": key
+        "key": musical_key,
+        "camelot_key": camelot_key
     }

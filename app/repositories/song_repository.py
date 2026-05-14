@@ -68,7 +68,8 @@ def get_all_songs():
             audio_features.energy,
             audio_features.loudness,
             audio_features.mood,
-            audio_features.musical_key
+            audio_features.musical_key,
+            audio_features.camelot_key
 
         FROM songs
 
@@ -98,7 +99,8 @@ def get_all_songs():
             "energy": row[5],
             "loudness": row[6],
             "mood": row[7],
-            "musical_key": row[8]
+            "musical_key": row[8],
+            "camelot_key": row[9]
         })
 
     return songs

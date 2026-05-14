@@ -56,32 +56,44 @@ def calculate_mood_score(
         50
     )
 
-HARMONIC_COMPATIBILITY = {
-
-    "C": ["G", "F", "Am"],
-    "G": ["D", "C", "Em"],
-    "D": ["A", "G", "Bm"],
-    "A": ["E", "D", "F#m"],
-}
-
 def calculate_harmonic_score(
     current_key,
     candidate_key
 ):
-
+    """
+    Calculate harmonic compatibility using Camelot wheel.
+    Camelot keys are in format: "8B", "9A", etc.
+    """
+    
+    if not current_key or not candidate_key:
+        return 50
+    
+    # Same key = perfect match
     if candidate_key == current_key:
         return 100
-
-    compatible = (
-        HARMONIC_COMPATIBILITY.get(
-            current_key,
-            []
-        )
-    )
-
-    if candidate_key in compatible:
+    
+    # Extract number and letter from Camelot key
+    try:
+        curr_num = int(current_key[:-1])
+        curr_letter = current_key[-1]
+        cand_num = int(candidate_key[:-1])
+        cand_letter = candidate_key[-1]
+    except (ValueError, IndexError):
+        return 30
+    
+    # Same number, different letter = very compatible
+    if curr_num == cand_num and curr_letter != cand_letter:
         return 80
-
+    
+    # Adjacent numbers with different letter = compatible
+    if abs(curr_num - cand_num) == 1 and curr_letter != cand_letter:
+        return 70
+    
+    # Handle wheel wrapping (12 to 1)
+    if (curr_num == 12 and cand_num == 1) or (curr_num == 1 and cand_num == 12):
+        if curr_letter != cand_letter:
+            return 70
+    
     return 30
 
 def calculate_history_score(
@@ -104,14 +116,14 @@ def calculate_final_score(
 
     return (
 
-        tempo_score * 0.4 +
+        tempo_score * 0.25 +
 
-        energy_score * 0.3 +
+        energy_score * 0.25 +
 
-        mood_score * 0.2 +
+        mood_score * 0.15 +
 
-        harmonic_score * 0.2 +
+        harmonic_score * 0.25 +
 
-        history_score * 0.1
+        history_score * 0.10
     )
 

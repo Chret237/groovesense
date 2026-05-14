@@ -41,8 +41,8 @@ def recommend_next_song(
 
         harmonic_score = (
             calculate_harmonic_score(
-                current_state["current_key"],
-                song["musical_key"]
+                current_state["camelot_key"],
+                song["camelot_key"]
             )
         )
 

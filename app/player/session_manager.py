@@ -18,7 +18,7 @@ def start_session(first_song):
     )
 
     session.current_key = (
-        first_song["musical_key"]
+        first_song["camelot_key"]
     )
 
     session.played_songs.append(
@@ -47,7 +47,7 @@ def update_session(
     )
 
     session.current_key = (
-        next_song["musical_key"]
+        next_song["camelot_key"]
     )
 
     session.played_songs.append(

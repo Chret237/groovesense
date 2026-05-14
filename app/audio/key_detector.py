@@ -38,4 +38,20 @@ def detect_key(
         chroma_mean
     )
 
-    return KEYS[key_index]
+    key = KEYS[key_index]
+
+    spectral_centroid = np.mean(
+        librosa.feature
+        .spectral_centroid(
+            y=audio,
+            sr=sr
+        )
+    )
+
+    if spectral_centroid > 2000:
+        mode = "Major"
+
+    else:
+        mode = "Minor"
+
+    return f"{key} {mode}"

@@ -2,12 +2,21 @@ from app.database.connection import (
     get_connection
 )
 
+from app.recommendation.camelot import (
+    get_camelot_key
+)
+
 def insert_audio_features(song_id, features):
 
     try:
         conn = get_connection()
 
         cursor = conn.cursor()
+
+        # Convert musical_key to camelot_key
+        camelot_key = get_camelot_key(
+            features.get("key")
+        )
 
         cursor.execute(
             '''
@@ -17,9 +26,10 @@ def insert_audio_features(song_id, features):
                 energy,
                 loudness,
                 mood,
-                musical_key
+                musical_key,
+                camelot_key
             )
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             ''',
             (
                 song_id,
@@ -27,7 +37,8 @@ def insert_audio_features(song_id, features):
                 features["energy"],
                 features["loudness"],
                 features["mood"],
-                features["key"]
+                features["key"],
+                camelot_key
             )
         )
 

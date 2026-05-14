@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS audio_features (
 
     musical_key TEXT NOT NULL,
 
+    camelot_key TEXT NOT NULL,
+
     analyzed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY(song_id)

@@ -53,7 +53,7 @@ def playback_loop(
                             "current_mood":
                             session.current_mood,
 
-                            "current_key":
+                            "camelot_key":
                             session.current_key
                         },
 
@@ -93,7 +93,7 @@ def playback_loop(
                         "current_mood":
                         session.current_mood,
 
-                        "current_key":
+                        "camelot_key":
                         session.current_key
                     },
 
@@ -149,7 +149,7 @@ def playback_loop(
                                 "current_mood":
                                 session.current_mood,
 
-                                "current_key":
+                                "camelot_key":
                                 session.current_key
                             },
 

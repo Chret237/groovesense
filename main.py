@@ -56,11 +56,11 @@ recommendation = (
             "current_energy":
             session.current_energy,
 
-            "current_key":
-            session.current_key,
-
             "current_mood":
-            session.current_mood
+            session.current_mood,
+
+            "camelot_key":
+            session.current_key
         },
 
         library=library,
